@@ -1,0 +1,39 @@
+[
+    {
+      "id": "1",
+      "title": "Handwashing",
+      "description": "An ML model for Shands Hospital cucucuccu ",
+      "category": "Machine Learning",
+      "collaborators": "Eric, Shan",
+      "githubLink": "https://github.com/aaronbesc/ai-resume-screener",
+      "technologies": ["V7 Darwin", "Python"]
+    },
+    {
+      "id": "2",
+      "title": "UF Shuttle Tracker",
+      "description": "A real-time bus tracking system for University of Florida students.",
+      "category": "Web Development",
+      "collaborators": "Solo Project",
+      "githubLink": "https://github.com/aaronbesc/uf-shuttle-tracker",
+      "technologies": ["React", "Node.js", "PostgreSQL"]
+    },
+    {
+      "id": "3",
+      "title": "Swamp Tutors",
+      "description": "A tutoring platform for UF students to find and book tutors.",
+      "category": "Edtech",
+      "collaborators": "Sarah Lee",
+      "githubLink": "https://github.com/aaronbesc/swamp-tutors",
+      "technologies": ["Django", "React", "Tailwind CSS"]
+    },
+    {
+      "id": "4",
+      "title": "Venezuelan Election",
+      "description": "A tool to analyze tally sheets from the Venezuelan elections.",
+      "category": "Data Analysis",
+      "collaborators": "Solo Project",
+      "githubLink": "https://github.com/aaronbesc/venezuela-election-analyzer",
+      "technologies": ["Pandas", "NumPy", "Folium"]
+    }
+  ]
+  
