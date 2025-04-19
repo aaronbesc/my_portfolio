@@ -62,7 +62,6 @@ export default function Home() {
             Feel free to connect or shoot me a message!
           </p>
         </header>
-
         {/* Projects Section */}
         <section>
           {/* Responsive grid: 2 columns on small screens and 4 columns on large screens */}
@@ -89,7 +88,6 @@ export default function Home() {
                     </svg>
                   </a>
                 </div>
-
                 <span className="text-xs px-2 py-1 text-white bg-zinc-900 rounded-full">
                   {project.category}
                 </span>
