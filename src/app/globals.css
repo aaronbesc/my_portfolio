@@ -1,27 +1,51 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
-@layer base {
-  /* Light mode defaults */
+
+/* ─── Color System ───────────────────────────────────────── */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --accent:    oklch(37.1% 0 0); /* Indigo-500 */
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
-    --accent:     oklch(37.1% 0 0); /* Indigo-500 as a clean accent */
-  }
-
-  /* Dark mode overrides */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #171717;
-      --foreground: #ffffff;
-      --accent:     oklch(87% 0 0); /* Indigo-300 for softer contrast */
-    }
-  }
-
-  html {
-    background-color: var(--background);
-    color:            var(--foreground);
-  }
-  body {
-    @apply bg-[var(--background)] text-[var(--foreground)] font-sans antialiased;
+    --background: #000000;
+    --foreground: #ffffff;
+    --accent:    oklch(87% 0 0);   /* Indigo-300 */
   }
 }
+
+/* ─── Base Styles ───────────────────────────────────────── */
+html {
+  background-color: var(--background);
+  color:            var(--foreground);
+}
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)];
+}
+
+/* ─── Font Utilities ────────────────────────────────────── */
+.font-sans {
+  font-family: var(--font-manrope), sans-serif;
+}
+.font-serif {
+  font-family: var(--font-bellefair), serif;
+}
+
+/* ─── Color Utilities ───────────────────────────────────── */
+.text-primary    { color: var(--accent) !important; }
+.border-primary  { border-color: var(--accent) !important; }
+.ring-primary    { --tw-ring-color: var(--accent); }
+
+/* ─── Card Styles ───────────────────────────────────────── */
+.card {
+  @apply border border-gray-300 dark:border-gray-700
+         bg-[var(--background)] rounded-xl p-6
+         transition-transform transition-shadow;
+}
+.card:hover {
+  @apply -translate-y-1 shadow-2xl;
+}
+

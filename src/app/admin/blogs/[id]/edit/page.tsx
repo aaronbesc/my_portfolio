@@ -37,7 +37,7 @@ export default function EditBlog() {
         title: form.title,
         subtitle: form.subtitle,
         content: form.content,
-        tags: form.tags.split(',').map(t => t.trim()),
+        tags: form.tags.split(',').map((t: string) => t.trim()),
         slug: form.slug,
         ogImage: form.ogImage || null,
       }),

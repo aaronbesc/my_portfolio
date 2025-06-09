@@ -35,7 +35,7 @@ export default function EditProject() {
         title: form.title,
         description: form.description,
         githubLink: form.githubLink || null,
-        tags: form.tags.split(',').map(t => t.trim()),
+        tags: form.tags.split(',').map((t: string) => t.trim()),
       }),
     });
     router.push('/admin/projects');
