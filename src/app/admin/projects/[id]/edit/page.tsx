@@ -2,16 +2,32 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 
+// 1) Define your project data & form shapes
+interface ProjectData {
+  id: string;
+  title: string;
+  description: string;
+  githubLink?: string | null;
+  tags: string[];
+}
+
+interface ProjectForm {
+  title: string;
+  description: string;
+  githubLink: string;
+  tags: string;
+}
+
 export default function EditProject() {
   const { id } = useParams();
-  const [form, setForm] = useState<any>(null);
+  const [form, setForm] = useState<ProjectForm | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     fetch('/api/projects')
       .then(res => res.json())
-      .then((data) => {
-        const project = data.find((p: any) => p.id === id);
+      .then((data: ProjectData[]) => {
+        const project = data.find(p => p.id === id);
         if (project) {
           setForm({
             title: project.title,
@@ -35,7 +51,7 @@ export default function EditProject() {
         title: form.title,
         description: form.description,
         githubLink: form.githubLink || null,
-        tags: form.tags.split(',').map((t: string) => t.trim()),
+        tags: form.tags.split(',').map(t => t.trim()),
       }),
     });
     router.push('/admin/projects');
@@ -44,8 +60,7 @@ export default function EditProject() {
   return (
     <form onSubmit={onSubmit} className="space-y-4 max-w-lg">
       <h2 className="text-xl font-semibold">Edit Project</h2>
-      {/* same inputs as NewProject, populated from form */}
-      {/* … */}
+      {/* …your inputs (same as NewProject) */}
       <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
         Save Changes
       </button>

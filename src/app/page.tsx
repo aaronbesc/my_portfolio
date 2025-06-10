@@ -4,7 +4,8 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { Linkedin, Twitter, Instagram, Mail, Download } from "lucide-react";
+import Image from 'next/image';
+import {  Linkedin, Twitter, Instagram, Mail, Download } from 'lucide-react';
 
 type Blog = {
   id: string;

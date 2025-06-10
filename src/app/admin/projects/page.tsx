@@ -2,10 +2,17 @@
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 
+// 1) Define your project‐list item
+interface ProjectItem {
+  id: string;
+  title: string;
+}
+
 const fetcher = (url: string) => fetch(url).then(r => r.json());
 
 export default function ProjectList() {
-  const { data: projects, error } = useSWR('/api/projects', fetcher);
+  // 2) Apply the type to SWR
+  const { data: projects, error } = useSWR<ProjectItem[]>('/api/projects', fetcher);
   const router = useRouter();
 
   if (error) return <p>Error loading projects.</p>;
@@ -21,11 +28,16 @@ export default function ProjectList() {
         + New Project
       </button>
       <ul className="space-y-2">
-        {projects.map((p: any) => (
-          <li key={p.id} className="flex justify-between items-center border p-2 rounded">
+        {projects.map(p => (
+          <li
+            key={p.id}
+            className="flex justify-between items-center border p-2 rounded"
+          >
             <span>{p.title}</span>
             <div className="space-x-2">
-              <button onClick={() => router.push(`/admin/projects/${p.id}/edit`)}>Edit</button>
+              <button onClick={() => router.push(`/admin/projects/${p.id}/edit`)}>
+                Edit
+              </button>
               <button
                 onClick={async () => {
                   await fetch('/api/projects', {

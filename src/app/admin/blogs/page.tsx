@@ -2,10 +2,17 @@
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 
+// 1) Define a simple type for each blog item
+interface BlogItem {
+  id: string;
+  title: string;
+}
+
 const fetcher = (url: string) => fetch(url).then(r => r.json());
 
 export default function BlogList() {
-  const { data: blogs, error } = useSWR('/api/blogs', fetcher);
+  // 2) Tell SWR to type the returned array
+  const { data: blogs, error } = useSWR<BlogItem[]>('/api/blogs', fetcher);
   const router = useRouter();
 
   if (error) return <p>Error loading blogs.</p>;
@@ -21,11 +28,16 @@ export default function BlogList() {
         + New Blog
       </button>
       <ul className="space-y-2">
-        {blogs.map((b: any) => (
-          <li key={b.id} className="flex justify-between items-center border p-2 rounded">
+        {blogs.map(b => (
+          <li
+            key={b.id}
+            className="flex justify-between items-center border p-2 rounded"
+          >
             <span>{b.title}</span>
             <div className="space-x-2">
-              <button onClick={() => router.push(`/admin/blogs/${b.id}/edit`)}>Edit</button>
+              <button onClick={() => router.push(`/admin/blogs/${b.id}/edit`)}>
+                Edit
+              </button>
               <button
                 onClick={async () => {
                   await fetch('/api/blogs', {
