@@ -5,19 +5,16 @@ import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import MDXClient from "@/components/MDXClient";
 
-interface BlogParams {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const all = await prisma.blog.findMany({ select: { slug: true } });
   return all.map((b) => ({ slug: b.slug }));
 }
 
-export default async function BlogPost({ params }: BlogParams) {
-  const { slug } = params;
+export default async function BlogPost({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
   const post = await prisma.blog.findUnique({ where: { slug } });
   if (!post) return notFound();
 
@@ -36,9 +33,7 @@ export default async function BlogPost({ params }: BlogParams) {
       <article className="prose dark:prose-invert mx-auto py-12 px-4 max-w-3xl">
         <h1>{post.title}</h1>
         {post.subtitle && (
-          <p className="text-gray-600 dark:text-gray-400">
-            {post.subtitle}
-          </p>
+          <p className="text-gray-600 dark:text-gray-400">{post.subtitle}</p>
         )}
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
           {new Date(post.createdAt).toLocaleDateString("en-US", {
