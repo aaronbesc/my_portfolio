@@ -1,18 +1,19 @@
-import { ReactNode } from 'react';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import Link from 'next/link';          // ← add this
-import AdminNav from '@/components/AdminNav';
+// src/app/admin/layout.tsx
+import { ReactNode } from "react";
+import { getServerSession } from "next-auth/next";
+import Link from "next/link";
+import AdminNav from "@/components/AdminNav";
+import { authOptions } from "@/lib/auth";
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return (
       <p className="p-6">
-        You must{' '}
+        You must{" "}
         <Link href="/api/auth/signin" className="underline">
           sign in
-        </Link>{' '}
+        </Link>{" "}
         to access the admin panel.
       </p>
     );
