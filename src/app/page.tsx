@@ -4,8 +4,8 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from 'next/image';
-import {  Linkedin, Twitter, Instagram, Mail, Download } from 'lucide-react';
+import Image from "next/image";           // keep this
+import { Linkedin, Twitter, Instagram, Mail, Download } from "lucide-react";
 
 type Blog = {
   id: string;
@@ -63,11 +63,12 @@ export default function Home() {
 
       {/* ─── Hero ─────────────────────────────────────────────── */}
       <section className="container mx-auto px-6 pt-16 pb-8 text-center">
-        <div className="mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 ring-primary ring-offset-4 ring-offset-[var(--background)]">
-          <img
+        <div className="relative mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 ring-primary ring-offset-4 ring-offset-[var(--background)]">
+          <Image
             src="/profile.jpeg"
             alt="Aaron Beschorner"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
         </div>
         <div className="mt-16 flex justify-center space-x-8 text-3xl">
