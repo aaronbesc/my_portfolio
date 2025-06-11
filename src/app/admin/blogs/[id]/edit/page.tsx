@@ -30,7 +30,6 @@ export default function EditBlog() {
   useEffect(() => {
     fetch('/api/blogs')
       .then(res => res.json())
-      // 2) Tell TypeScript what `data` is
       .then((data: BlogData[]) => {
         const blog = data.find(b => b.id === id);
         if (blog) {
@@ -50,6 +49,11 @@ export default function EditBlog() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    // ---- NULL-GUARD ----
+    if (!form) return;
+    // --------------------
+
     await fetch('/api/blogs', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -58,12 +62,12 @@ export default function EditBlog() {
         title: form.title,
         subtitle: form.subtitle,
         content: form.content,
-        // no need to re-type `t` as string here
         tags: form.tags.split(',').map(t => t.trim()),
         slug: form.slug,
         ogImage: form.ogImage || null,
       }),
     });
+
     router.push('/admin/blogs');
   }
 
