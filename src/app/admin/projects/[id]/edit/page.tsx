@@ -43,6 +43,10 @@ export default function EditProject() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    // Null‐guard so TS knows form is non‐null below
+    if (!form) return;
+
     await fetch('/api/projects', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -54,6 +58,7 @@ export default function EditProject() {
         tags: form.tags.split(',').map(t => t.trim()),
       }),
     });
+
     router.push('/admin/projects');
   }
 
