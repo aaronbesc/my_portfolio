@@ -15,7 +15,6 @@ interface Props {
 }
 
 export default async function BlogPost({ params }: Props) {
-  // Await the async params object before destructuring
   const { slug } = await params;
 
   const post = await prisma.blog.findUnique({ where: { slug } });
