@@ -1,13 +1,15 @@
 // prisma/schema.prisma
 
+// Define database connection via the `DATABASE_URL` env var
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define custom output path for generated Prisma Client
 generator client {
   provider = "prisma-client-js"
   engineType = "binary"
-}
-
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
 }
 
 model User {
