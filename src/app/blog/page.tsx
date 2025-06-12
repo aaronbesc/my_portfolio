@@ -1,43 +1,31 @@
-// src/app/blog/[slug]/page.tsx
+// src/app/blog/page.tsx
 import prisma from "@/lib/prisma";
-import { notFound } from "next/navigation";
-import Head from "next/head";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { compileMDX } from "next-mdx-remote/rsc";
+import Link from "next/link";
 
-// Optional MDX components override:
-const mdxComponents = {};
-
-export async function generateStaticParams() {
-  const posts = await prisma.blog.findMany({ select: { slug: true } });
-  return posts.map(({ slug }) => ({ slug }));
-}
-
-export default async function BlogPost({ params: { slug } }: { params: { slug: string } }) {
-  const post = await prisma.blog.findUnique({ where: { slug } });
-  if (!post) return notFound();
-
-  const { content, frontmatter } = await compileMDX({
-    source: post.content,
-    parseFrontmatter: true,
+export default async function BlogIndex() {
+  const posts = await prisma.blog.findMany({
+    orderBy: { createdAt: "desc" },
   });
 
   return (
-    <>
-      <Head>
-        <title>{frontmatter.title || post.title}</title>
-        <meta name="description" content={post.subtitle ?? ""} />
-        {post.ogImage && <meta property="og:image" content={post.ogImage} />}
-      </Head>
-      <article className="prose mx-auto py-12 px-4 max-w-3xl">
-        <h1>{frontmatter.title || post.title}</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-          {new Date(post.createdAt).toLocaleDateString("en-US", {
-            month: "short", day: "numeric", year: "numeric",
-          })}
-        </p>
-        <MDXRemote source={content} components={mdxComponents} />
-      </article>
-    </>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-8 font-sans">
+      <h1 className="text-4xl text-center mb-8">Blog</h1>
+      <div className="max-w-3xl mx-auto space-y-6">
+        {posts.map((post) => (
+          <Link
+            key={post.id}
+            href={`/blog/${post.slug}`}
+            className="block p-6 border rounded-lg hover:shadow-lg transition"
+          >
+            <h2 className="text-2xl font-semibold">{post.title}</h2>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
+              {new Date(post.createdAt).toLocaleDateString()}
+            </p>
+            <p className="mt-2 line-clamp-2">{post.subtitle}</p>
+            <div className="mt-3 text-indigo-600 font-medium">Continue reading &rarr;</div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
