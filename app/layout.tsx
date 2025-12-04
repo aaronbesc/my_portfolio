@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Aaron Beschorner | Portfolio & Blog",
+  title: "Aaron Beschorner",
   description:
     "Data analytics, data science, and creative engineering projects by Aaron Beschorner, plus writing on tech, fashion, and life.",
 };
