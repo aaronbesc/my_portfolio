@@ -1,9 +1,9 @@
 // src/app/blog/[slug]/page.tsx
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { compileMDX } from "next-mdx-remote/rsc";
+import type { Metadata } from "next";
 
 const mdxComponents = {};
 
@@ -12,11 +12,30 @@ export async function generateStaticParams() {
   return posts.map(({ slug }) => ({ slug }));
 }
 
-export default async function BlogPost(props: {
-  params: Promise<{ slug: string }>;
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await prisma.blog.findUnique({ where: { slug: params.slug } });
+
+  return {
+    title: post?.title ?? "Blog Post",
+    description: post?.subtitle ?? "",
+    openGraph: {
+      title: post?.title,
+      description: post?.subtitle,
+      images: post?.ogImage ? [{ url: post.ogImage }] : [],
+    },
+  };
+}
+
+export default async function BlogPost({
+  params,
+}: {
+  params: { slug: string };
 }) {
-  const { slug } = await props.params;
-  const post = await prisma.blog.findUnique({ where: { slug } });
+  const post = await prisma.blog.findUnique({ where: { slug: params.slug } });
   if (!post) return notFound();
 
   const { content, frontmatter } = await compileMDX({
@@ -25,23 +44,16 @@ export default async function BlogPost(props: {
   });
 
   return (
-    <>
-      <Head>
-        <title>{frontmatter.title || post.title}</title>
-        <meta name="description" content={post.subtitle ?? ""} />
-        {post.ogImage && <meta property="og:image" content={post.ogImage} />}
-      </Head>
-      <article className="prose mx-auto py-12 px-4 max-w-3xl">
-        <h1>{frontmatter.title || post.title}</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-          {new Date(post.createdAt).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })}
-        </p>
-        <MDXRemote source={content} components={mdxComponents} />
-      </article>
-    </>
+    <article className="prose mx-auto py-12 px-4 max-w-3xl">
+      <h1>{frontmatter.title || post.title}</h1>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+        {new Date(post.createdAt).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })}
+      </p>
+      <MDXRemote source={content} components={mdxComponents} />
+    </article>
   );
 }
