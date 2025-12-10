@@ -38,10 +38,6 @@ export default function BlogIndex() {
 
   return (
     <section className="space-y-8">
-      <header className="space-y-3">
-        <h1 className="text-3xl sm:text-4xl font-semibold text-zinc-50">Blog</h1>
-      </header>
-
       <div className="space-y-4">
         {posts.map((post) => (
           <article
@@ -52,7 +48,7 @@ export default function BlogIndex() {
               href={`/blog/${post.slug}`}
               className="block space-y-1"
             >
-              <h2 className="text-lg sm:text-xl font-medium text-zinc-50">
+              <h2 className="text-sm text-zinc-50">
                 {post.title}
               </h2>
               <p className="text-xs text-zinc-500">

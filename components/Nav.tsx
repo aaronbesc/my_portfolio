@@ -8,8 +8,8 @@ const links = [
 export default function Nav() {
   return (
     <nav className="flex items-center justify-between gap-6">
-      <Link href="/" className="text-sm tracking-[0.18em] uppercase text-zinc-400">
-        aaron&nbsp;beschorner
+      <Link href="/" className="text-sm text-zinc-400">
+        Aaron&nbsp;Beschorner
       </Link>
 
       <div className="flex items-center gap-5 text-sm text-zinc-400">
