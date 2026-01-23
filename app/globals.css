@@ -35,39 +35,38 @@ html, body {
 }
 
 /* Blog / MDX typography */
-article h1 {
+.mdx h1 {
   @apply text-xl sm:text-2xl font-semibold text-zinc-100 mt-6 mb-3;
 }
 
-article h2 {
+.mdx h2 {
   @apply text-lg sm:text-xl font-semibold text-zinc-100 mt-6 mb-3;
 }
 
-article h3 {
+.mdx h3 {
   @apply text-base sm:text-lg font-medium text-zinc-200 mt-5 mb-2;
 }
 
-article p {
+.mdx p {
   @apply text-zinc-300 leading-relaxed my-3;
 }
 
-article a {
+.mdx a {
   @apply underline underline-offset-2 text-zinc-100 hover:text-white;
 }
 
-article ul {
+.mdx ul {
   @apply list-disc list-inside my-4 text-zinc-300;
 }
 
-article ol {
+.mdx ol {
   @apply list-decimal list-inside my-4 text-zinc-300;
 }
 
-article code {
+.mdx code {
   @apply text-xs sm:text-sm bg-zinc-900 px-1.5 py-0.5 rounded;
 }
 
-article pre {
+.mdx pre {
   @apply bg-zinc-900 p-4 rounded-lg overflow-x-auto text-xs sm:text-sm my-4;
 }
-

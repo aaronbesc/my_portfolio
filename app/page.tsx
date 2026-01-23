@@ -6,7 +6,16 @@ export default function HomePage() {
       <div className="space-y-4">
         <div className="border border-zinc-900 rounded-xl p-4 sm:p-5 text-xs sm:text-sm text-zinc-400 bg-zinc-950/40">
           <p>
-            Currently working as a <strong>Data Engineer @ Intempo</strong>, a Colombia-based technology and data science firm. I design, maintain, and optimize large-scale data processing and cleaning pipelines in <strong>Microsoft Fabric</strong>, which power <strong>Power BI</strong> dashboards used by the government to analyze groups of registered vehicles under their jurisdiction. In parallel, I am developing a machine learning pricing model in <strong>Azure Machine Learning</strong> that estimates a vehicle’s assessed value based on regulatory rules, registration data, and import documentation, supporting accurate and auditable tax assessments.
+            Currently working as a <strong>Data Engineer @ Intempo</strong>, a
+            Colombia-based technology and data science firm. I design, maintain,
+            and optimize large-scale data processing and cleaning pipelines in{" "}
+            <strong>Microsoft Fabric</strong>, which power <strong>Power BI</strong>{" "}
+            dashboards used by the government to analyze groups of registered
+            vehicles under their jurisdiction. In parallel, I am developing a
+            machine learning pricing model in <strong>Azure Machine Learning</strong>{" "}
+            that estimates a vehicle’s assessed value based on regulatory rules,
+            registration data, and import documentation, supporting accurate and
+            auditable tax assessments.
           </p>
         </div>
 
@@ -19,9 +28,7 @@ export default function HomePage() {
         <div className="border border-zinc-900 rounded-xl p-4 sm:p-5 bg-zinc-950/40">
           <div className="flex items-center justify-between">
             <p className="text-xs sm:text-sm text-zinc-300">Coursework</p>
-            <p className="text-[10px] sm:text-xs text-zinc-500">
-              CS + EE minor
-            </p>
+            <p className="text-[10px] sm:text-xs text-zinc-500">CS + EE minor</p>
           </div>
 
           <div className="mt-3 grid gap-4 sm:grid-cols-2">
@@ -30,7 +37,6 @@ export default function HomePage() {
                 Currently taking
               </p>
               <ul className="mt-2 space-y-1 text-xs sm:text-sm text-zinc-400">
-                {/* swap these with your current courses */}
                 <li>Senior Project</li>
                 <li>Distributed Machine Learning</li>
                 <li>Natural Language Processing</li>
@@ -43,13 +49,51 @@ export default function HomePage() {
                 Previously took
               </p>
               <ul className="mt-2 space-y-1 text-xs sm:text-sm text-zinc-400">
-                {/* swap these with your past courses */}
                 <li>Machine Learning Engineering</li>
                 <li>Data Science for Electrical and Computer Engineers</li>
                 <li>Digital Logic and Computer Systems</li>
                 <li>Algorithms and Data Structures</li>
               </ul>
             </div>
+          </div>
+        </div>
+
+        {/* Currently reading (minimal library card) */}
+        <div className="border border-zinc-900 rounded-xl p-4 sm:p-5 bg-zinc-950/40">
+          <div className="flex items-center justify-between">
+            <p className="text-xs sm:text-sm text-zinc-300">Reading</p>
+          </div>
+
+          <div className="mt-3 space-y-2">
+            {/* Book 1 */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm text-zinc-200 truncate">
+                  <span className="italic">The Decadent Society: How We Became the Victims of Our Own Success</span>
+                </p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">
+                  Ross Douthat — technology, culture, stagnation
+                </p>
+              </div>
+              <span className="shrink-0 text-[10px] sm:text-xs text-zinc-500 border border-zinc-800 rounded-full px-2 py-0.5">
+                in progress
+              </span>
+            </div>
+
+            {/* Book 2
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm text-zinc-200 truncate">
+                  <span className="italic">Machine Learning Engineering</span>
+                </p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">
+                  Andriy Burkov • practical ML, shipping models
+                </p>
+              </div>
+              <span className="shrink-0 text-[10px] sm:text-xs text-zinc-500 border border-zinc-800 rounded-full px-2 py-0.5">
+                current
+              </span>
+            </div> */}
           </div>
         </div>
 
@@ -107,13 +151,6 @@ export default function HomePage() {
         </ul>
 
         <div className="flex flex-wrap gap-3 pt-2">
-          {/* <Link
-            href="/projects"
-            className="text-xs sm:text-sm border border-zinc-700 px-4 py-2 rounded-full hover:border-zinc-300 hover:text-zinc-100 transition-colors"
-          >
-            View Projects
-          </Link> */}
-
           <Link
             href="/resume.pdf"
             className="text-xs sm:text-sm border border-zinc-700 px-4 py-2 rounded-full hover:border-zinc-300 hover:text-zinc-100 transition-colors"
