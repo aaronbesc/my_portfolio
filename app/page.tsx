@@ -34,7 +34,7 @@ export default function HomePage() {
                 <li>Senior Project</li>
                 <li>Distributed Machine Learning</li>
                 <li>Natural Language Processing</li>
-                <li>Real-time Digital Signal Processing</li>
+                <li>Real-time Digital Signal Processing Applications</li>
               </ul>
             </div>
 
