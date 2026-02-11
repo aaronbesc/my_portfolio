@@ -152,7 +152,7 @@ export default function HomePage() {
 
         <div className="flex flex-wrap gap-3 pt-2">
           <Link
-            href="/resume.pdf"
+            href="/Aaron_Beschorner_Resume.pdf"
             className="text-xs sm:text-sm border border-zinc-700 px-4 py-2 rounded-full hover:border-zinc-300 hover:text-zinc-100 transition-colors"
           >
             Download Resume
